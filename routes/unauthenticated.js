@@ -1,13 +1,12 @@
 const passport = require("passport"),
-    User = require("../models/users"),
+    User = require("../controllers/users"),
     path = require("path");
 
 
 module.exports = function (app, jwt) {
     app.get("/", function(req, res){
-        // res.sendFile(path.join(__dirname, "client/public/index.html")
-    res.render("working or not?");
-    });
+        res.redirect("/profile");
+        })
 
     app.post('/login', 
         passport.authenticate('local', {
@@ -16,9 +15,7 @@ module.exports = function (app, jwt) {
             failureFlash: true
         })
     );
-
     app.post('/register', function (req, res) {
-        console.log(req)
         User.createAccount(req.body, function (err, account) {
             if (err) throw (err);
             res.redirect("/");

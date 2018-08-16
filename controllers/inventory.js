@@ -1,19 +1,24 @@
-// Import the ORM to create functions that will interact with the database.
-// var orm = require("../config/orm.js");
-
 var mongoose = require("mongoose"),
     Stock = mongoose.model("stock");
 
-var inventory = {
+module.exports = {
+  // all: function(req, res) {
+  //   db.Stock
+  //     .find(req.query)
+  //     // .sort({ date: -1 })
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
+  
   all: function(cb) {
-    Stock.find({}, function(err, stock){
-      cb(err, stock);
-    })
+    Stock.find({})
+        .exec(function(err, items){
+          cb(err, items);
+        });
   },
-  // The variables cols and vals are arrays.
   create: function(data, cb) {
     var stock = new Stock(data);
-    Stock.create(stock, function(err, createdStock){
+    stock.save(stock, function(err, createdStock){
       cb(err, createdStock);
     });
   },
@@ -28,6 +33,3 @@ var inventory = {
     });
   }
 };
-
-// Export the database functions for the controller (itemsController.js).
-module.exports = inventory;

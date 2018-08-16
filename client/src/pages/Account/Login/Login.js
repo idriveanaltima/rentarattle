@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Input, FormBtn } from "../../../components/Form/";
+import API from "../../../utils/API";
+import { BrowserRouter as Route } from "react-router-dom";
+import Profile from '../Profile/Profile';
 
-function handleCreateAccount() {
-    console.log("this link was clicked")
-};
 
-const Login = (props) => {
+class Login extends Component {
 
+    state = {
+        email: "",
+        password: ""
+      };
+// login = () => {
+//       return <Route exact path ="/profile" component={Profile}/>
+// }
+handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+handleFormSubmit = event => {
+    event.preventDefault();
+      API.login({
+        email: this.state.email,
+        password: this.state.password         
+      }) 
+        .then(res => console.log(res)) 
+        .catch(err => console.log(err));
+    };
+
+render () {
   return (
        <form>
        <div className="card" id="login">
@@ -20,27 +46,48 @@ const Login = (props) => {
                    </div>
                </div>
                    <div className="form-group">
-                       <label htmlFor="email" className="form-label">Email</label>
-                       <input type="email" className="form-control" name="email" id="email" placeholder="name@example.com" autoFocus spellCheck="true" required/>
+                       <label>Email
+                       <Input
+                            value={this.state.email}
+                            onChange={this.handleInputChange}
+                            type="email"
+                            name="email"
+                            placeholder="name@example.com" required
+                        />
+                       </label>
                    </div>
                    <div className="form-group">
-                       <label htmlFor="password" className="form-label">Password</label>
-                       <br/>
-                       <input type="password" name="password" id="password" required/>
+                       <label>Password
+                       <Input
+                           value={this.state.password}
+                           onChange={this.handleInputChange}
+                            type="password"
+                            name="password"
+                            required
+                            />
+                      </label>
                    </div>
+                   {/* <div className="form-group">
+                        <Input
+                           value={this.state.value}
+                           onChange={this.handleInputChange}
+                            type="checkbox"
+                            name="rememberMe"
+                            />
+                       <label> Remember Me</label>
+
+                   </div> */}
                    <div className="form-group">
-                       <input type="checkbox" id="remember-me-checkbox" checked/>
-                       <label htmlFor="remember-me-checkbox" tabIndex="-1">Remember Me</label>
-                   </div>
-                   <div className="form-group">
-                       <button type="submit" className="btn btn-secondary" id="sign-in">
-                       Sign In                               
-                    </button>
+                       < FormBtn   
+                       onClick={this.handleFormSubmit}> 
+                       Sign in
+                        </FormBtn>
                    </div>
            </div>
        </div>
      </form>
   )
+}
 }
 
 export default Login

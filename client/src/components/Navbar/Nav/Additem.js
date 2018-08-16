@@ -6,7 +6,7 @@ const Additem = () => {
   return (
 
     <li className="nav-item">
-    <a className="nav-link" href="/addItem" id="add">Donate or Lend</a>
+    <a className="nav-link" href="/addItem" id="add">Donate</a>
   </li>
   )
 }

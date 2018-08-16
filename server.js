@@ -35,16 +35,17 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 //Add unauthenticated controllers
-const unauth = require("./controllers/unauthenticated")(app, jwt);
-// app.use(unauth);
+require("./routes/unauthenticated.js") (app, jwt);
+require("./routes/items.js") (app, jwt);
+require("./routes/inventory.js") (app, jwt);
+
+
 //Require auth middleware
-app.use(auth.validateRequest);
+// app.use(auth.validateRequest);
 
 //Add authenticated controllers
-const itemsCont = require("./controllers/itemsController");
-const index = require("./controllers/index.js")(app, jwt);
-// app.use(itemsCont);
-// app.use(index);
+// require("./controllers/itemsController");
+// require("./controllers/account");
 
 //Start listening
 app.listen(PORT, () => {

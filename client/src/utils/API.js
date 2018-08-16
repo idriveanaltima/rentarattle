@@ -20,5 +20,17 @@ export default {
   createAccount: function(account) {
     console.log("hitting this post route?")
     return axios.post("/register", account);
-  }
+  },
+  login: function(account) {
+    console.log("hitting this login route?")
+    return axios.post("/login", account);
+},
+addInventory: function(item) {
+  console.log("hitting this addItem route?")
+  return axios.post("/api/inventory", item);
+},
+getInventory: function(item) {
+  console.log("hitting this Inventory route?")
+  return axios.get("/api/inventory", item);
+},
 };

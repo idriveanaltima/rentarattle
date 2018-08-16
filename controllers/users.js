@@ -5,18 +5,7 @@
 var mongoose = require("mongoose"),
     UserAccount = mongoose.model("useraccount");
 
-var User = {
-  all: function(cb) {
-    // orm.all("user_accounts", function(res) {
-    //   cb(res);
-    // });
-  },
-  // The variables cols and vals are arrays.
-  create: function(cols, vals, cb) {
-    // orm.create("user_accounts", cols, vals, function(res) {
-    //   cb(res);
-    // });
-  },
+module.exports = {
   update: function(objColVals, condition, cb) {
     UserAccount.update(condition, objColVals, function(err, userAccount){
       cb(err, userAccount);
@@ -48,6 +37,3 @@ var User = {
     });
   }
 };
-
-// Export the database functions for the controller (passport.js).
-module.exports = User;

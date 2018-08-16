@@ -1,6 +1,9 @@
 
 const db = require("../datamodels");
 
+var mongoose = require("mongoose"),
+    Item = mongoose.model("item");
+
 module.exports = {
 
   findAll: function(req, res) {
@@ -34,51 +37,35 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
-};
+  },
+    all: function(cb) {
+      Item.find({})
+          .select({item_name: 1, price: 1, purchased: 1})
+          .exec(function(err, items){
+            cb(err, items);
+          });
+    },
+    // The variables cols and vals are arrays.
+    create: function(data, cb) {
+      var item = new Item(data);
+      item.save(function(err, savedItem){
+        cb(err, savedItem);
+      });
+    },
+    update: function(objColVals, condition, cb) {
+      Item.update(condition, objColVals, function(err, savedItem){
+        cb(err, savedItem);
+      });
+    },
+    delete: function(id, cb) {
+      Item.deleteOne({_id: id}, function(err){
+        cb(err);
+      });
+    }
+  };
 
 
 
-  // Create all our routes and set up logic within those routes where required. Probably don't need any of these.....
-//   app.get("/api/items", function(req, res) {
-//     items.all(function(err, data) {
-//       res.json(data);
-//     });
-//   });
 
-//   app.post("/api/items", function(req, res) {
-//     items.create(req.body, function(err, result){
-//       if(!err){
-//         res.json({id: result._id});
-//       }
-//     });
-//   });
 
-//   app.put("/api/items/:id", function(req, res) {
-//     var condition = {_id : req.params.id};
-
-//     console.log("condition", condition);
-
-//     items.update({
-//       purchased: req.body.purchased
-//     }, condition, function(err, result) {
-//       if (err) {
-//         // If no rows were changed, then the ID must not exist, so 404
-//         return res.status(404).end();
-//       } else {
-//         res.status(200).end();
-//       }
-//     });
-//   });
-
-//   app.delete("/api/items/:id", function(req, res) {
-//     items.delete(req.params.id, function(err) {
-//       if(err){
-//         return res.status(404).end();
-//       } else {
-//         res.status(200).end();
-//       }
-//     });
-//   });
-// }
 

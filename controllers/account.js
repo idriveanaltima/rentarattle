@@ -3,7 +3,6 @@ const db = require("../datamodels");
 
 module.exports = {
   createAccount: function(req, res) {
-    console.log("are we getting this far?")
     db.Accounts
       .create(req.body)
       .then(dbModel => res.json(dbModel))
