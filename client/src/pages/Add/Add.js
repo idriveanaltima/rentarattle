@@ -10,9 +10,15 @@ class Add extends Component {
     item_description: "",
     quantity: 1,
     total_uses: 1,
-    updated_at: Date.now
+    updated_at: Date.now,
+    file: null
   };
 
+selectFile = event => {
+  this.setState({
+    file: event.target.files[0]
+  });
+}
 handleInputChange = event => {
 const { name, value } = event.target;
 this.setState({
@@ -26,7 +32,8 @@ event.preventDefault();
     item_name: this.state.item_name,
     item_type: this.state.item_type,
     item_description: this.state.item_description,
-    quantity: this.state.quantity         
+    quantity: this.state.quantity,
+    file: ""      
   }) 
     .then(res => console.log(res) ) 
     .catch(err => console.log(err));
@@ -93,6 +100,16 @@ render () {
             required
             />
             </label>
+        </div>
+        <div className="form-group">
+          <Input
+            value={this.state.file}
+            onChange={this.selectFile}
+            type="file"
+            name="file"
+            placeholder="File (required)"
+            required
+            />
         </div>
         <FormBtn 
           onClick={this.handleFormSubmit}> 

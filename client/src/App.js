@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -9,6 +9,8 @@ import Create from './pages/Account/Create/Create';
 import Profile from './pages/Account/Profile/Profile';
 import Search from './pages/Search/Search';
 import Add from './pages/Add/Add';
+import Protected from './components/Auth/Protected'
+
 
 class App extends Component {
   render() {
@@ -23,6 +25,7 @@ class App extends Component {
         <Route exact path="/searchItem" component={Search}/>
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/addItem" component={Add}/>
+        <Protected exact path="/cart" component={Protected}/>
       </Switch>
       </Router>
       <br/>

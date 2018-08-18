@@ -4,6 +4,7 @@ import Account from "./Nav/Account";
 import Allitems from "./Nav/Listitem";
 import Additem from "./Nav/Additem";
 import Search from "./Nav/Search";
+import Cart from "./Nav/Cart";
 
 const Navbar = (props) => {
 	console.log(props)
@@ -19,8 +20,10 @@ const Navbar = (props) => {
     <ul className="navbar-nav mr-auto">
 		 <Allitems />
 		 <Additem  />
-	   <Account />   
+	   <Account />  
+     <Cart /> 
     </ul>
+
     <Search />
   </div>
 </nav>

@@ -11,6 +11,7 @@ class Search extends Component {
     item_type: "",
     item_name: "",
     item_description: "",
+    file: "",
     quantity: 1
   }
 
@@ -21,7 +22,7 @@ class Search extends Component {
   loadInventory = () => {
     API.getInventory()
       .then(res => 
-        this.setState({ items: res.data, item_type: "", item_name: "", item_description: ""})
+        this.setState({ items: res.data, item_type: "", item_name: "", item_description: "", file: ""})
       )
       .catch(err => console.log(err));
   };

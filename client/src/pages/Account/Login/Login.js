@@ -3,17 +3,16 @@ import { Input, FormBtn } from "../../../components/Form/";
 import API from "../../../utils/API";
 import { BrowserRouter as Route } from "react-router-dom";
 import Profile from '../Profile/Profile';
-
+import Auth from "../../../components/Auth/Auth";
 
 class Login extends Component {
 
     state = {
         email: "",
-        password: ""
+        password: "",
+        redirect: false
       };
-// login = () => {
-//       return <Route exact path ="/profile" component={Profile}/>
-// }
+
 handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -27,7 +26,7 @@ handleFormSubmit = event => {
         email: this.state.email,
         password: this.state.password         
       }) 
-        .then(res => console.log(res)) 
+        .then(res => { res.Auth.isAuthenticated() }) 
         .catch(err => console.log(err));
     };
 
