@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, FormBtn } from "../../components/Form/";
+import { Input, FormBtn, TextArea } from "../../components/Form/";
 import API from "../../utils/API";
 
 class Add extends Component {
@@ -74,7 +74,7 @@ render () {
         </div>
         <div className="form-group">
           <label>Item description:
-          <Input
+          <TextArea
             value={this.state.item_description}
             onChange={this.handleInputChange}
             type="textarea"

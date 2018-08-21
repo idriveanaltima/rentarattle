@@ -26,7 +26,7 @@ handleFormSubmit = event => {
         email: this.state.email,
         password: this.state.password         
       }) 
-        .then(res => { res.Auth.isAuthenticated() }) 
+        .then(res => console.log(res)) 
         .catch(err => console.log(err));
     };
 

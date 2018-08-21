@@ -44,6 +44,8 @@ render () {
 return (
 
 <div className='container-fluid'>
+<div className='row'>
+<div className='col-md-12 col-lg-12 col-s-6 col-xs-6'>
 <form>
               <div className="card" id="new-account" >
                   <div className="card-body">
@@ -86,7 +88,7 @@ return (
                             />
                             </label>
     
-                              <label>Password
+                              <label>Password   </label>
                               <br/>
                               <Input
                            value={this.state.password}
@@ -95,7 +97,7 @@ return (
                             name="password"
                             placeholder="Password (required)"
                             />
-                            </label>
+                          
                           <div className="form-group">
                               <FormBtn 
                               onClick={this.handleFormSubmit}> 
@@ -106,6 +108,8 @@ return (
                   </div>
               </div>
         </form>
+        </div>
+        </div>
         </div>
 )
 }
