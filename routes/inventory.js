@@ -11,8 +11,7 @@ module.exports = function (app, jwt) {
     });
   });
 
-  app.post("/api/inventory", function(req, res) {
-    console.log("route in node?")
+  app.post("/api/inventory", (req, res) => {
     Inventory.create(req.body, function(err, result){
       if(!err){
         res.json({id: result._id});

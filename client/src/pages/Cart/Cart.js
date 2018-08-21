@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
 import { Card, CardItem } from "../../components/Card";
 import { FormBtn } from "../../components/Form/";
 
@@ -36,7 +34,8 @@ class Search extends Component {
               id={item._id}
               image={item.item_url}
               item={item.item_name} 
-              >   
+              >
+             
             <br/>
             <div>
             {item.item_description}

@@ -1,10 +1,9 @@
 "use strict";
-var mongoose = require("mongoose")
+const mongoose = require("mongoose")
     , fs = require("fs")
     , models_path = process.cwd() + "/datamodels/"
 	, local = "mongodb://localhost:27017/paknplay"
 	, remote = "mongodb://";
-
 
 var currentEnvironment = local;
 
@@ -17,7 +16,7 @@ db.on("error", function (err) {
     console.error("MongoDB connection error:", err);
 });
 
-db.once("open", function callback() {
+db.once("open", () => {
     console.info("MongoDB connection is established");
 });
 

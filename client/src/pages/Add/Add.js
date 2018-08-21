@@ -11,14 +11,9 @@ class Add extends Component {
     quantity: 1,
     total_uses: 1,
     updated_at: Date.now,
-    file: null
+    url: ""
   };
 
-selectFile = event => {
-  this.setState({
-    file: event.target.files[0]
-  });
-}
 handleInputChange = event => {
 const { name, value } = event.target;
 this.setState({
@@ -33,7 +28,7 @@ event.preventDefault();
     item_type: this.state.item_type,
     item_description: this.state.item_description,
     quantity: this.state.quantity,
-    file: ""      
+    item_url: this.state.file     
   }) 
     .then(res => console.log(res) ) 
     .catch(err => console.log(err));
@@ -50,9 +45,9 @@ render () {
   </div>
   <div className="row">
   <div className="col-lg-12 col-xs-12">
-    <div className="pull-right">
+    <div>
       <h3>Add an Item</h3>
-      <form className="create-form">
+      <form className="create-form" >
         <div className="form-group">
           <label>Item Name:
           <Input
@@ -103,9 +98,9 @@ render () {
         </div>
         <div className="form-group">
           <Input
-            value={this.state.file}
-            onChange={this.selectFile}
-            type="file"
+            value={this.state.url}
+            onChange={this.handleInputChange}
+            type="text"
             name="file"
             placeholder="File (required)"
             required

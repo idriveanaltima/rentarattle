@@ -6,6 +6,7 @@ const flash = require("connect-flash");
 const app = express();
 const auth = require("./middleware/auth");
 const jwt = require('jwt-express');
+
 //Add the mongoose initializer
 require("./config/mongoose");
 //Add the passport configureation
@@ -46,6 +47,7 @@ require("./routes/inventory.js") (app, jwt);
 //Add authenticated controllers
 // require("./controllers/itemsController");
 // require("./controllers/account");
+
 
 //Start listening
 app.listen(PORT, () => {
