@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Input, FormBtn } from "../../../components/Form/";
-import API from "../../../utils/API";
+import { Input, FormBtn } from "../../components/Form/";
+import API from "../../utils/API";
 
 class Create extends Component {
 

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Input, FormBtn } from "../../../components/Form/";
-import API from "../../../utils/API";
-import { BrowserRouter as Route } from "react-router-dom";
-import Profile from '../Profile/Profile';
-import Auth from "../../../components/Auth/Auth";
+import { Input, FormBtn } from "../../components/Form/";
+import API from "../../utils/API";
+import { BrowserRouter as Route, Redirect, Link } from "react-router-dom";
+import Profile from './Profile';
 
 class Login extends Component {
 
@@ -26,9 +25,16 @@ handleFormSubmit = event => {
         email: this.state.email,
         password: this.state.password         
       }) 
-        .then(res => console.log(res)) 
+        .then(res => {if(res.status === 200){
+            console.log("logged in")
+           return (
+            <Redirect
+                to="/addItem"
+            />
+            )
+    }})
         .catch(err => console.log(err));
-    };
+    }
 
 render () {
   return (

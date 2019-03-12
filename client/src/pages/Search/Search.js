@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Card, CardItem } from "../../components/Card";
-import { FormBtn } from "../../components/Form/";
+import { Card } from "../../components/Card";
 
 class Search extends Component {
+  constructor(props){
+    super(props);
+}
+
   state = {
     items: [],
     item_type: "",
@@ -28,39 +31,28 @@ class Search extends Component {
 
   handleClick = (props) => {
     console.log("getting clicked?")
+    console.log(props)
 return (
-  <Link to={"/api/inventory/" + props.item._id}>
+  <Link to={"/api/inventory/" + props.id}>
   <strong>
-    {props.item.item_name}         
+    {props.item}         
   </strong>
-  <p> {props.item.item_description}   </p>
+  <p> {props.description}   </p>
 </Link>
 )
-
-  }
-
+}
   render() {
     return (
       <div className='container-fluid'>
           {this.state.items.map(item => (
-              <Card
-              key={item._id}
-              id={item._id}
+              <Card    
               image={item.item_url}
               item={item.item_name} 
-              onClick={this.handleClick}
-              >   
-            <br/>
-            <div>
-            {item.item_description}
-            </div>
-            <FormBtn onClick={this.addToCart}>
-          Buy
-       </FormBtn> 
-       <FormBtn onClick={this.addToCart}>
-          Rent
-       </FormBtn> 
-       </Card>
+              description={item.item_description} 
+              handleClick={this.handleClick}
+              key={item._id}
+              id={item._id}
+              />
         ))}
           </div>
     );
