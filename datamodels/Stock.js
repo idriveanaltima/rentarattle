@@ -10,8 +10,7 @@ var stockSchema = new Schema({
     item_url: String,
     total_uses: Number,
     updated_at: Date,
-    created_at: { type: Date, default: Date.now },
-    
+    created_at: { type: Date, default: Date.now },  
 });
 
 const Stock = mongoose.model("stock", stockSchema);
